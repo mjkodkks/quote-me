@@ -1,7 +1,7 @@
 import { useAppContext } from "../context/AppContext.";
 
 
-const upload = () => {
+const Upload = () => {
    // eslint-disable-next-line react-hooks/rules-of-hooks
    const { setImg } = useAppContext()
 
@@ -29,4 +29,4 @@ const upload = () => {
    </>)
 }
 
-export default upload
+export default Upload

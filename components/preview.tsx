@@ -1,8 +1,7 @@
 import { useAppContext } from "../context/AppContext."
 import { useEffect, useState } from "react"
-import Image from 'next/image'
 
-const preview = () => {
+const Preview = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const { img } = useAppContext()
     const [render, setRender] = useState<boolean>(false)
@@ -17,11 +16,9 @@ const preview = () => {
             test img {img}
 
             </div>
-          {/* {contextStore.img && <Image src={contextStore.img} width={200} height={200} alt="preview" />} */}
-
           <img src={img} width={200} height={200} alt="preview" />
         </div>
     </>)
 }
 
-export default preview
+export default Preview
