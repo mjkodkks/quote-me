@@ -1,0 +1,7 @@
+.previewWrapper {
+    width:  400px;
+    height: 250px;
+    position: relative;
+    margin-top: 1rem;
+    display: block;
+}

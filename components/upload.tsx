@@ -1,12 +1,14 @@
 import { useAppContext } from "../context/AppContext.";
+type AppProps = {
+   onImgChange: (a: string) => void;
+ };
 
-
-const Upload = () => {
+const Upload = ({onImgChange}: AppProps) => {
    // eslint-disable-next-line react-hooks/rules-of-hooks
-   const { setImg } = useAppContext()
+   // const { setImg } = useAppContext()
 
    function imageChange(event: { target: HTMLInputElement; }) {
-      console.log(event)
+      // console.log(event)
       const files = event.target.files;
       if (files) {
          // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -15,7 +17,7 @@ const Upload = () => {
          fileReader.onload = (e: any) => {
             const { result } = e.target;
             if (result) {
-               setImg(result)
+               onImgChange(result)
             }
          }
          fileReader.readAsDataURL(files[0]);

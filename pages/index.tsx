@@ -4,8 +4,16 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Upload from '../components/upload'
 import Preview from '../components/preview'
+import { useState } from 'react'
 
 const Home: NextPage = () => {
+  const [img, setImg] = useState()
+
+  function onImgChange(e) {
+    // console.log(e)
+    setImg(e)
+  }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -23,8 +31,8 @@ const Home: NextPage = () => {
           Get started by editing{' '}
           upload picture
         </p>
-        <Upload></Upload>
-        <Preview></Preview>
+        <Upload onImgChange={onImgChange}></Upload>
+        <Preview imageSrc={img}></Preview>
       </main>
 
       <footer className={styles.footer}>
