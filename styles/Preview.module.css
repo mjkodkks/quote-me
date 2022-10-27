@@ -1,7 +1,27 @@
+.containerPreview {
+    max-width: 600px;
+    min-width: 300px;
+    max-height: 600px;
+    min-height: 300px;
+    position: relative;
+    background: red;
+}
 .previewWrapper {
     width:  400px;
     height: 250px;
     position: relative;
     margin-top: 1rem;
     display: block;
+    border: 1px solid #999;
+    border-radius: 3px;
 }
+.previewWrapper img {
+    cursor: pointer;
+}
+.previewWrapper:hover {
+    cursor: move;
+}    
+.react-draggable, .cursor {
+      cursor: move;
+ }
+
