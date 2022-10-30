@@ -5,10 +5,10 @@ import styles from '../styles/Home.module.css'
 import Upload from '../components/upload'
 import Preview from '../components/preview'
 import { useRef, useState } from 'react'
-import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
+import { toPng } from 'html-to-image';
 
 const Home: NextPage = () => {
-  const [img, setImg] = useState()
+  const [img, setImg] = useState('')
   const ref = useRef(null);
 
   function onImgChange(e) {
@@ -17,23 +17,24 @@ const Home: NextPage = () => {
   }
 
   function onSave(e) {
-    console.log(ref)
-    if (ref.current) {
-      toPng(ref.current)
-        .then(function (dataUrl) {
-          // var img = document.createElement('img')
-          // img.src = dataUrl;
-          var aDownloadLink = document.createElement('a');
-          // Add the name of the file to the link
-          aDownloadLink.download = 'my_quote.png';
-          // Attach the data to the link
-          aDownloadLink.href = dataUrl;
-          // Get the code to click the download link
-          aDownloadLink.click();
-        })
-        .catch(function (error) {
-          console.error('oops, something went wrong!', error);
-        });
+    if (confirm('Are your sure to save?  ')) {
+      if (ref.current) {
+        toPng(ref.current)
+          .then(function (dataUrl) {
+            // var img = document.createElement('img')
+            // img.src = dataUrl;
+            var aDownloadLink = document.createElement('a');
+            // Add the name of the file to the link
+            aDownloadLink.download = 'my_quote.png';
+            // Attach the data to the link
+            aDownloadLink.href = dataUrl;
+            // Get the code to click the download link
+            aDownloadLink.click();
+          })
+          .catch(function (error) {
+            console.error('oops, something went wrong!', error);
+          });
+      }
     }
   }
 
@@ -56,7 +57,10 @@ const Home: NextPage = () => {
         </p>
         <Upload onImgChange={onImgChange}></Upload>
         <Preview imageSrc={img} ref={ref}></Preview>
-        <button onClick={onSave}>Save</button>
+        {
+          img &&
+          <button className="btn btn-primary mt-4" onClick={onSave}>Save</button>
+        }
       </main>
 
       <footer className={styles.footer}>
